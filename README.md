@@ -13,7 +13,7 @@ Skills are markdown files that extend Claude Code's capabilities with specialize
 Use [OpenSkills](https://github.com/anthropics/openskills) to install directly from GitHub:
 
 ```bash
-npx openskills install mysticcoders/random-claude-skills:transcript
+npx openskills install mysticcoders/random-claude-skills/transcript
 ```
 
 ### Manual Install
