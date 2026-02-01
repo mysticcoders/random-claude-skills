@@ -8,19 +8,30 @@ Skills are markdown files that extend Claude Code's capabilities with specialize
 
 ## Installation
 
-To use a skill from this repository:
+### Quick Install (Recommended)
 
-1. Copy the skill folder to your Claude skills directory:
-   ```bash
-   cp -r transcript ~/.claude/skills/
-   ```
+Use [OpenSkills](https://github.com/anthropics/openskills) to install directly from GitHub:
 
-2. Restart Claude Code or start a new session
+```bash
+npx openskills install mysticcoders/random-claude-skills:transcript
+```
 
-3. Invoke the skill with its slash command:
-   ```
-   /transcript https://youtube.com/watch?v=example
-   ```
+### Manual Install
+
+Clone and copy the skill folder:
+
+```bash
+git clone https://github.com/mysticcoders/random-claude-skills.git
+cp -r random-claude-skills/transcript ~/.claude/skills/
+```
+
+### Usage
+
+After installation, restart Claude Code or start a new session, then invoke the skill:
+
+```
+/transcript https://youtube.com/watch?v=example
+```
 
 ## Available Skills
 
