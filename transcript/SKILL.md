@@ -63,7 +63,7 @@ After gathering answers, create `~/.claude/skills/transcript/config.json`:
   "transcript_subfolder": "Transcripts",
   "enable_wiki_links": true,
   "priority_folders": ["Projects", "Areas", "Resources"],
-  "configured_at": "2026-02-01"
+  "configured_at": "<current date>"
 }
 ```
 
@@ -131,12 +131,10 @@ This provides:
 
 Extract audio to the system temp directory:
 ```bash
-yt-dlp -x --audio-format mp3 --audio-quality 0 -o "$TMPDIR/transcript-%(title)s.%(ext)s" "<URL>"
+AUDIO_FILE=$(yt-dlp -x --audio-format mp3 --audio-quality 0 -o "$TMPDIR/transcript-%(title)s.%(ext)s" --print after_move:filepath "<URL>")
 ```
 
-**Note:** Use `$TMPDIR` (macOS/Linux) which resolves to the system temp directory. This is portable across machines.
-
-Note the output filename from yt-dlp for the next step.
+**Note:** Use `$TMPDIR` (macOS/Linux) which resolves to the system temp directory. This is portable across machines. The `--print after_move:filepath` flag captures the exact output filename for use in subsequent steps.
 
 ### Step 4: Transcribe with Parakeet
 
@@ -217,12 +215,12 @@ Use Grep to search `{notes_path}` for key terms from the transcript.
 
 ### Step 7: Cleanup
 
-Remove the temporary audio file after successful transcription:
+Remove the temporary audio file after successful transcription using the captured filename from Step 3:
 ```bash
-rm "$TMPDIR/transcript-*.mp3"
+rm "$AUDIO_FILE"
 ```
 
-Also clean up any SRT files parakeet created in the current directory.
+Also clean up any SRT files parakeet created in the current directory (typically named after the audio file with `.srt` extension).
 
 ## Reconfiguration
 
